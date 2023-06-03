@@ -45,6 +45,14 @@ func AddRekeningController(c echo.Context) error {
 	var newRekening models.Rekening
 	c.Bind(&newRekening)
 
+	var nasabah models.Nasabah
+	cekNasabah := config.DB.Where("id = ?", &newRekening.NasabahID).First(&nasabah)
+	if cekNasabah.Error == gorm.ErrRecordNotFound {
+		return c.JSON(http.StatusBadRequest, models.FailResponse{
+			Message: "Gagal membuat rekening, Nasabah tidak ditemukan.",
+		})
+	}
+
 	var rekening models.Rekening
 	cekRekening := config.DB.Where("no_rekening = ?", &newRekening.NoRekening).First(&rekening)
 	if cekRekening.Error == gorm.ErrRecordNotFound {

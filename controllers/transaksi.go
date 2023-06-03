@@ -60,7 +60,7 @@ func KreditTransaksiController(c echo.Context) error {
 
 		newSaldo := rekening.Saldo + newTransaksi.Nominal
 		config.DB.Model(&rekening).Where("id = ?", newTransaksi.RekeningID).Update("saldo", newSaldo)
-		return c.JSON(http.StatusOK, models.BaseResponse{
+		return c.JSON(http.StatusCreated, models.BaseResponse{
 			Message: "Success",
 			Data:    newTransaksi,
 		})
@@ -94,7 +94,7 @@ func DebitTransaksiController(c echo.Context) error {
 			})
 		}
 		config.DB.Model(&rekening).Where("id = ?", newTransaksi.RekeningID).Update("saldo", newSaldo)
-		return c.JSON(http.StatusOK, models.BaseResponse{
+		return c.JSON(http.StatusCreated, models.BaseResponse{
 			Message: "Success",
 			Data:    newTransaksi,
 		})
