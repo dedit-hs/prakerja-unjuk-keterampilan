@@ -13,6 +13,7 @@ func Init() *echo.Echo {
 	e.GET("/nasabah", controllers.GetNasabahController)
 	e.GET("/nasabah/:id", controllers.GetNasabahByIdController)
 	e.POST("/nasabah", controllers.AddNasabahController)
+	e.DELETE("/nasabah/:id", controllers.DeleteNasabahController)
 
 	e.GET("/rekening", controllers.GetRekeningController)
 	e.GET("/rekening/:id", controllers.GetRekeningByIdController)

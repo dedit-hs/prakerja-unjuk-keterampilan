@@ -61,3 +61,24 @@ func AddNasabahController(c echo.Context) error {
 		Message: "Failed, NIK sudah terdaftar.",
 	})
 }
+
+func DeleteNasabahController(c echo.Context) error {
+	var nasabah models.Nasabah
+	id := c.Param("id")
+	result := config.DB.Preload("Rekening").First(&nasabah, id)
+	if result.Error != nil {
+		return c.JSON(http.StatusInternalServerError, models.FailResponse{
+			Message: "Terjadi kesalahan server, gagal mendapatkan data nasabah.",
+		})
+	}
+
+	deleteNasabah := config.DB.Delete(&nasabah)
+	if deleteNasabah.Error != nil {
+		return c.JSON(http.StatusInternalServerError, models.FailResponse{
+			Message: "Terjadi kesalahan server, gagal menghapus data nasabah.",
+		})
+	}
+	return c.JSON(http.StatusOK, models.FailResponse{
+		Message: "Success, nasabah berhasil dihapus.",
+	})
+}

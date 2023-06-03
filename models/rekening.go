@@ -7,7 +7,7 @@ type Rekening struct {
 	NasabahID  uint        `json:"nasabah_id"`
 	NoRekening uint        `json:"no_rekening"`
 	Saldo      uint        `json:"saldo"`
-	Transaksi  []Transaksi `json:"transaksi" gorm:"foreignKey:RekeningID"`
+	Transaksi  []Transaksi `json:"transaksi" gorm:"constraint:OnDelete:CASCADE"`
 	CreatedAt  time.Time   `json:"created_at"`
 	UpdatedAt  time.Time   `json:"updated_at"`
 }
