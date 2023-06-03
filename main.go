@@ -17,7 +17,7 @@ func main() {
 }
 
 func envPortOr(port string) string {
-	envPort := os.Getenv("PRA_APPPORT")
+	envPort := os.Getenv("PORT")
 	if envPort != "" {
 		return ":" + envPort
 	}
