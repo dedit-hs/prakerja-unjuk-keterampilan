@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"prakerja/config"
 	"prakerja/routes"
 )
@@ -12,5 +13,5 @@ func init() {
 
 func main() {
 	e := routes.Init()
-	e.Logger.Fatal(e.Start(":8000"))
+	e.Logger.Fatal(e.Start(":" + os.Getenv("PRA_APPPORT")))
 }
