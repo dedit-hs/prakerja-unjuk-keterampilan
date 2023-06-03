@@ -13,5 +13,13 @@ func init() {
 
 func main() {
 	e := routes.Init()
-	e.Logger.Fatal(e.Start(":" + os.Getenv("PRA_APPPORT")))
+	e.Logger.Fatal(e.Start(":" + getPort()))
+}
+
+func getPort() string {
+	port := os.Getenv("PRA_APPPORT")
+	if port == "" {
+		port = "8000"
+	}
+	return port
 }

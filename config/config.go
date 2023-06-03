@@ -5,7 +5,7 @@ import (
 	"os"
 	"prakerja/models"
 
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -13,10 +13,10 @@ import (
 var DB *gorm.DB
 
 func LoadEnv() {
-	err := godotenv.Load()
-	if err != nil {
-		panic("fail to load file")
-	}
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	panic("fail to load file")
+	// }
 }
 
 type DBConfig struct {
